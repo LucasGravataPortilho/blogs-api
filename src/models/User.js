@@ -14,13 +14,14 @@ const UserModel = (sequelize, DataTypes) => {
         autoIncrement: true,
         allowNull: false,
       },
-      display_name: DataTypes.STRING,
+      displayName: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,
       image: DataTypes.STRING
     }, {
       timestamps: false,
       tableName: 'users',
+      underscored: true
     });
   
     return User;
