@@ -7,6 +7,7 @@ const validateUser = require('../middlewares/validateUser');
 const validateJWT = require('../middlewares/validateJWT');
 
 router.route('/')
-    .post(validateUser, userController.createUser);
+    .post(validateUser, userController.createUser)
+    .get(validateJWT, userController.getAll);
 
 module.exports = router;

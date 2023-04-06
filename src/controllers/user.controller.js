@@ -3,6 +3,16 @@ const { UserService } = require('../services');
 
 const secret = process.env.JWT_SECRET || 'suaSenhaSecreta';
 
+const getAll = async (req, res) => {
+  try {
+    const users = await UserService.getUsers();
+
+    return res.status(200).json(users);
+  } catch (err) {
+    return res.status(500).json({ message: 'Erro interno', error: err.message });
+  }
+};
+
 const createUser = async (req, res) => {
   try {
     const { displayName, email, password, image } = req.body;
@@ -30,4 +40,5 @@ const createUser = async (req, res) => {
 
 module.exports = {
     createUser,
+    getAll,
 };
