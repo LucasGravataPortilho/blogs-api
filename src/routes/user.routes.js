@@ -10,4 +10,7 @@ router.route('/')
     .post(validateUser, userController.createUser)
     .get(validateJWT, userController.getAll);
 
+router.route('/:id')
+    .get(validateJWT, userController.getById);
+
 module.exports = router;

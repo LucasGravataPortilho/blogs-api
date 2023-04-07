@@ -9,7 +9,8 @@ const getUsers = () => User.findAll({
 
 const getByEmail = (email) => User.findOne({ where: { email } });
 
-const getByUserId = (userId) => User.findByPk(userId);
+const getByUserId = (userId) => User
+  .findByPk(userId, { attributes: ['id', 'displayName', 'email', 'image'] });
 
 module.exports = {
   createUser,
