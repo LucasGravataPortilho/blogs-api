@@ -9,4 +9,7 @@ router.route('/')
     .post(validateJWT, postController.createPost)
     .get(validateJWT, postController.getAll);
 
+router.route('/:id')
+    .get(validateJWT, postController.getById);
+
 module.exports = router;
