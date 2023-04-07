@@ -10,6 +10,7 @@ router.route('/')
     .get(validateJWT, postController.getAll);
 
 router.route('/:id')
-    .get(validateJWT, postController.getById);
+    .get(validateJWT, postController.getById)
+    .put(validateJWT, postController.update);
 
 module.exports = router;

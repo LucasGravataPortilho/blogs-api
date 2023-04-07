@@ -42,8 +42,34 @@ const getById = async (req, res) => {
   }
 };
 
+const update = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, content } = req.body;
+    const { user } = req;
+    const bodyValid = title && content;
+  
+    if (!bodyValid) {
+      return res.status(400).json({ message: 'Some required fields are missing' });
+    }
+
+    const post = await BlogPostService.getById(id);
+
+    if (post.userId !== user.id) {
+      return res.status(401).json({ message: 'Unauthorized user' });
+    }
+
+    const updatedPost = await BlogPostService.updatePosts(id, { title, content });
+    
+    return res.status(200).json(updatedPost);
+    } catch (err) {
+      return res.status(500).json({ message: 'Erro interno', error: err.message });
+  }
+};
+
 module.exports = {
   createPost,
   getAll,
   getById,
+  update,
 };
